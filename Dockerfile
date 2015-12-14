@@ -2,11 +2,17 @@ FROM ubuntu:14.10
 
 EXPOSE 80
 
-RUN apt-get update && \
-    apt-get install -y \
+RUN apt-get update \
+    && apt-get install -y \
       nano \
       wget \
       curl \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
+
+RUN apt-get update && \
+    apt-get install -y \
       libapache2-mod-php5 \
       php5-gd \
       php5-mcrypt \
